@@ -135,7 +135,7 @@ async function getGoogleDrivePath(auth, fileId) {
 }
 
 // Define the function to convert the Google Doc to Markdown
-async function convertDocToMarkdown(auth) {
+async function convertDocToMarkdown(auth, documentid, markdownDirectory) {
   const docs = google.docs({ version: 'v1', auth }); // Initialize Docs API
   const drive = google.drive({ version: 'v3', auth }); // Initialize Drive API
   const docResponse = await docs.documents.get({
@@ -145,18 +145,19 @@ async function convertDocToMarkdown(auth) {
   // Get full drive path and remove "My Drive/" prefix
   let drivePath = await getGoogleDrivePath(auth, documentid);
   let mdPath = drivePath.replace(/^My Drive\/?/, '');
-// Get file name from Drive
-const fileMetadata = await drive.files.get({
-  fileId: documentid,
-  fields: 'name'
-});
 
-// Get filename without extension and sanitize
-const sanitizedName = fileMetadata.data.name
-  .replace(/\.[^/.]+$/, '') // Remove extension if present
-  .toLowerCase()
-  .replace(/[^a-z0-9]+/g, '-')
-  .replace(/(^-|-$)/g, '');
+  // Get file name from Drive
+  const fileMetadata = await drive.files.get({
+    fileId: documentid,
+    fields: 'name'
+  });
+
+  // Get filename without extension and sanitize
+  const sanitizedName = fileMetadata.data.name
+    .replace(/\.[^/.]+$/, '') // Remove extension if present
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
 
   // Combine paths and create full directory structure
   const mdFullPath = path.join(markdownDirectory, mdPath);
@@ -187,7 +188,7 @@ async function main() {
   try {
     const auth = await authorize();
     console.log('Authentication successful!');
-    await convertDocToMarkdown(auth);
+    await convertDocToMarkdown(auth, documentid, markdownDirectory);
   } catch (error) {
     console.error('Error:', error);
   }
