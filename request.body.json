@@ -1,0 +1,69 @@
+  {
+    "documentId": string,
+    "title": string,
+    "body": {
+    object (Body)
+    },
+    "headers": {
+    string: {
+      object (Header)
+      },
+    ...
+    },
+    "footers": {
+    string: {
+      object (Footer)
+      },
+    ...
+    },
+    "footnotes": {
+    string: {
+      object (Footnote)
+      },
+    ...
+    },
+    "documentStyle": {
+    object (DocumentStyle)
+    },
+    "suggestedDocumentStyleChanges": {
+    string: {
+      object (SuggestedDocumentStyle)
+      },
+    ...
+    },
+    "namedStyles": {
+    object (NamedStyles)
+    },
+    "suggestedNamedStylesChanges": {
+    string: {
+      object (SuggestedNamedStyles)
+      },
+    ...
+    },
+    "lists": {
+    string: {
+      object (List)
+      },
+    ...
+    },
+    "namedRanges": {
+    string: {
+      object (NamedRanges)
+      },
+    ...
+    },
+    "revisionId": string,
+    "suggestionsViewMode": enum (SuggestionsViewMode),
+    "inlineObjects": {
+    string: {
+      object (InlineObject)
+      },
+    ...
+    },
+    "positionedObjects": {
+    string: {
+      object (PositionedObject)
+      },
+    ...
+    }
+  }

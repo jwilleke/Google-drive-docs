@@ -1,0 +1,25 @@
+{
+  "name": "google-drive-docs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jim@willeke.com",
+  "license": "ISC",
+  "dependencies": {
+    "docs-markdown": "^1.2.0",
+    "dotenv": "^16.0.3",
+    "fs": "^0.0.1-security",
+    "google-auth-library": "^9.15.0",
+    "googleapis": "^74.2.0",
+    "path": "^0.12.7",
+    "ppath": "^1.0.0",
+    "process": "^0.11.10",
+    "readline": "^1.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.11"
+  }
+}
